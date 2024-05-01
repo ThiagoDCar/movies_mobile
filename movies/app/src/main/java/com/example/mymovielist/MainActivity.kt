@@ -17,4 +17,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
+
+    val name = ""
 }
