@@ -19,4 +19,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     val name = ""
+    val tes = "op"
 }
