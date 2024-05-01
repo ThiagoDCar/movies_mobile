@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mymovielist</string>
+    <string name="entrar">Entrar</string>
+    <string name="criar_conta">Cria sua conta clicando aqui!</string>
 </resources>
