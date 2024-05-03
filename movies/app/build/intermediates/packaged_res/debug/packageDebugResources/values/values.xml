@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="dark_blue">#170b2a</color>
+    <color name="gray">#36454F</color>
+    <color name="light_blue">#241178</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">Mymovielist</string>
+    <string name="criar_conta">Crie sua conta clicando aqui!</string>
+    <string name="entrar">Entrar</string>
+    <style name="Base.Theme.Mymovielist" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/button</item>
+    </style>
+    <style name="ContainerComponents">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">250dp</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:background">@drawable/container_components</item>
+    </style>
+    <style name="Edit_Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:background">@drawable/edit_text</item>
+    </style>
+    <style name="Label_Title">
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:background">@drawable/label_title</item>
+    </style>
+    <style name="Theme.Mymovielist" parent="Base.Theme.Mymovielist"/>
+</resources>
