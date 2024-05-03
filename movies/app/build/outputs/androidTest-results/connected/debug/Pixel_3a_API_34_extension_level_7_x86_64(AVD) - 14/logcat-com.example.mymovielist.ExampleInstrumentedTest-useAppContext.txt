@@ -1,0 +1,2 @@
+05-02 22:10:02.448  4945  5026 I TestRunner: started: useAppContext(com.example.mymovielist.ExampleInstrumentedTest)
+05-02 22:10:02.473  4945  5026 I TestRunner: finished: useAppContext(com.example.mymovielist.ExampleInstrumentedTest)

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.example.mymovielist.app-mergeDebugResources-30:/layout/activity_form_login.xml",
+        "source": "com.example.mymovielist.app-main-33:/layout/activity_form_login.xml"
+    },
+    {
+        "merged": "com.example.mymovielist.app-mergeDebugResources-30:/layout/activity_main.xml",
+        "source": "com.example.mymovielist.app-main-33:/layout/activity_main.xml"
+    }
+]
