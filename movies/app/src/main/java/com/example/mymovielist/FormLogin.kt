@@ -9,8 +9,11 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.mymovielist.databinding.ActivityFormLoginBinding
 
 class FormLogin : AppCompatActivity() {
+
     private lateinit var binding: ActivityFormLoginBinding
     private lateinit var usuarioOpenHelper: UsuarioOpenHelper
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -51,4 +54,6 @@ class FormLogin : AppCompatActivity() {
         // Consulta o banco de dados para verificar se o usuário com o email e senha fornecidos existe
         return usuarioOpenHelper.verificarUsuario(email, password)
     }
+
+    //private void fun
 }
