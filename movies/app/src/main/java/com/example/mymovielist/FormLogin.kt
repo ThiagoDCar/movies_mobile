@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class FormLogin : AppCompatActivity() {
+
+    //private lateinit var textTelaCadastro: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -17,4 +19,6 @@ class FormLogin : AppCompatActivity() {
             insets
         }
     }
+
+    //private void fun
 }
