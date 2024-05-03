@@ -21,4 +21,5 @@ class FormLogin : AppCompatActivity() {
     }
 
     //private void fun
+    val a = ""
 }
