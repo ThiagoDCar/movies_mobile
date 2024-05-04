@@ -17,7 +17,4 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
-
-    val name = ""
-    val tes = "op"
 }

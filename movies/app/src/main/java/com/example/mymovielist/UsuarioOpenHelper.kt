@@ -18,13 +18,14 @@ class UsuarioOpenHelper(context: Context) : SQLiteOpenHelper(context, NOME_BANCO
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT NOT NULL, " +
                 "email TEXT NOT NULL UNIQUE, " +
-                "password TEXT NOT NULL, " +
-                "age INTEGER NOT NULL)"
+                "password TEXT NOT NULL)"
         db.execSQL(sql)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-
+        val dropTableQuery = "DROP TABLE IF EXISTS user"
+        db.execSQL(dropTableQuery)
+        onCreate(db)
     }
 
     fun insertUser(user: User){
@@ -33,7 +34,6 @@ class UsuarioOpenHelper(context: Context) : SQLiteOpenHelper(context, NOME_BANCO
             put("name", user.name)
             put("email", user.email)
             put("password", user.password)
-            put("age", user.age)
         }
             db.insert("user", null, values)
             db.close()

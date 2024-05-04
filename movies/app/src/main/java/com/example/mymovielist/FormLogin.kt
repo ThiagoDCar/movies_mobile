@@ -11,27 +11,26 @@ import com.example.mymovielist.databinding.ActivityFormLoginBinding
 
 class FormLogin : AppCompatActivity() {
 
-    private lateinit var binding: ActivityFormLoginBinding
-    private lateinit var usuarioOpenHelper: UsuarioOpenHelper
-
+    private lateinit var view: ActivityFormLoginBinding
+    private lateinit var db: UsuarioOpenHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityFormLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        view = ActivityFormLoginBinding.inflate(layoutInflater)
+        setContentView(view.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        usuarioOpenHelper = UsuarioOpenHelper(this)
-        inserirUsuarioExemplo()
+        db = UsuarioOpenHelper(this)
 
-        binding.button.setOnClickListener {
-            val email = binding.email.text.toString()
-            val senha = binding.senha.text.toString()
+        view.button.setOnClickListener {
+            val email = view.email.text.toString()
+            val senha = view.senha.text.toString()
 
             // Verifica se o email e a senha estão corretos
             if (verificarCredenciais(email, senha)) {
@@ -43,7 +42,7 @@ class FormLogin : AppCompatActivity() {
             }
         }
 
-        binding.cadastrar.setOnClickListener {
+        view.cadastrar.setOnClickListener {
             telaCadastro()
         }
     }
@@ -53,16 +52,18 @@ class FormLogin : AppCompatActivity() {
         startActivity(intent)
     }
 
+    //private fun testeUsuarios() {
+    //    usuarioOpenHelper.GetAll()
+    //}
+
     private fun inserirUsuarioExemplo() {
-        val usuario = User("Exemplo", "exemplo@example.com", "senha123", 30)
+        val usuario = User("Exemplo", "exemplo@example.com", "senha123")
 
         // Insira o usuário no banco de dados usando a função insertUser da classe UsuarioOpenHelper
-        usuarioOpenHelper.insertUser(usuario)
+        db.insertUser(usuario)
     }
     private fun verificarCredenciais(email: String, password: String): Boolean {
         // Consulta o banco de dados para verificar se o usuário com o email e senha fornecidos existe
-        return usuarioOpenHelper.verificarUsuario(email, password)
+        return db.verificarUsuario(email, password)
     }
-
-    //private void fun
 }

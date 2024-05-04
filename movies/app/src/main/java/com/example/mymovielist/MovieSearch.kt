@@ -7,17 +7,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.mymovielist.databinding.ActivityFormCadastroBinding
+import com.example.mymovielist.databinding.ActivityFormLoginBinding
+import com.example.mymovielist.databinding.ActivityMovieSearchBinding
 
-class FormCadastro : AppCompatActivity() {
+class MovieSearch : AppCompatActivity() {
 
-    private lateinit var view: ActivityFormCadastroBinding
+    private lateinit var view: ActivityFormLoginBinding
     private lateinit var db: UsuarioOpenHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        view = ActivityFormCadastroBinding.inflate(layoutInflater)
+        view = ActivityFormLoginBinding.inflate(layoutInflater)
         setContentView(view.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -29,23 +31,11 @@ class FormCadastro : AppCompatActivity() {
         db = UsuarioOpenHelper(this)
 
         view.button.setOnClickListener {
-            val nome = view.nome.text.toString()
-            val email = view.email.text.toString()
-            val senha = view.senha.text.toString()
+            val pesquisa = view.pesquisar.text.toString()
 
-            val user = User(nome,email,senha)
+            val a = "https://api.themoviedb.org/3/search/movie?query=" + pesquisa + "&api_key=b2ca12b72a2d39fd17fa0c3fcfc37ae7"
 
-            db.insertUser(user)
-            finish()
-            Toast.makeText(this, "Cadrasto realizado com sucesso!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, a, Toast.LENGTH_SHORT).show()
         }
-
-        view.voltaLogin.setOnClickListener{
-            telaLogin()
-        }
-    }
-    private fun telaLogin() {
-        val intent = Intent(this, FormLogin::class.java)
-        startActivity(intent)
     }
 }
