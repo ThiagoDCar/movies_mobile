@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Mymovielist</string>
     <string name="entrar">Entrar</string>
-
+    <string name="cadastrar">Cadastrar</string>
     <string name="email">Email</string>
     <string name="senha">Senha</string>
+    <string name="nome">Nome</string>
     <string name="criar_conta">Crie sua conta clicando aqui!</string>
+    <string name="tem_conta">Tem uma conta?</string>
     <string name="Ola">Olá! Que bom ver você de novo.</string>
-
+    <string name="BemVindo">Olá! Seja muito bem-vindo!.</string>
 </resources>

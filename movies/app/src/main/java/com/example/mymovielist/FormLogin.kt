@@ -1,5 +1,6 @@
 package com.example.mymovielist
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -12,7 +13,6 @@ class FormLogin : AppCompatActivity() {
 
     private lateinit var binding: ActivityFormLoginBinding
     private lateinit var usuarioOpenHelper: UsuarioOpenHelper
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,15 @@ class FormLogin : AppCompatActivity() {
                 Toast.makeText(this, "Credenciais inválidas!", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.cadastrar.setOnClickListener {
+            telaCadastro()
+        }
+    }
+
+    private fun telaCadastro() {
+        val intent = Intent(this, FormCadastro::class.java)
+        startActivity(intent)
     }
 
     private fun inserirUsuarioExemplo() {
