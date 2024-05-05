@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.mymovielist.databinding.ActivityMovieSearchBinding
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -37,17 +38,36 @@ class MovieSearch : AppCompatActivity() {
 
             //val a = "https://api.themoviedb.org/3/search/movie?query=$pesquisa&api_key=$API_KEY"
 
-            val client = OkHttpClient()
 
-            val request = Request.Builder()
-                .url("https://api.themoviedb.org/3/authentication")
-                .get()
-                .addHeader("Authorization", "b2ca12b72a2d39fd17fa0c3fcfc37ae7")
-                .build()
+            try {
+                val client = OkHttpClient()
 
-            val response = client.newCall(request).execute()
+                val url = HttpUrl.Builder()
+                    .scheme("https")
+                    .host("api.themoviedb.org")
+                    .addPathSegment("3")
+                    .addPathSegment("search")
+                    .addPathSegment("movie")
+                    .addQueryParameter("query", "Int")
+                    .addQueryParameter("api_key", "b2ca12b72a2d39fd17fa0c3fcfc37ae7")
+                    .build()
 
-            Toast.makeText(this, "Feito!!", Toast.LENGTH_SHORT).show()
+                val request = Request.Builder()
+                    .url(url)
+                    .get()
+                    .build()
+
+                val response = client.newCall(request).execute()
+
+                val responseText = response.body?.string() ?: "Empty response"
+
+                view.response.text = responseText
+
+                Toast.makeText(this, response, Toast.LENGTH_SHORT).show()
+            }
+            catch (e : Exception){
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
