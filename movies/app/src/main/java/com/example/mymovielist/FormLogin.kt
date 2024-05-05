@@ -2,11 +2,15 @@ package com.example.mymovielist
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import com.example.mymovielist.databinding.ActivityFormLoginBinding
 
 class FormLogin : AppCompatActivity() {
@@ -32,38 +36,27 @@ class FormLogin : AppCompatActivity() {
             val email = view.email.text.toString()
             val senha = view.senha.text.toString()
 
-            // Verifica se o email e a senha estão corretos
-            if (verificarCredenciais(email, senha)) {
-                // Credenciais corretas, faça algo, como navegar para outra tela
+            if (db.verificarUsuario(email, senha)) {
+                view.spinner.visibility = View.VISIBLE
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    view.spinner.visibility = View.INVISIBLE
+                }, 2000)
+                telaMovieSearch()
                 Toast.makeText(this, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
             } else {
-                // Credenciais incorretas, exiba uma mensagem de erro
                 Toast.makeText(this, "Credenciais inválidas!", Toast.LENGTH_SHORT).show()
             }
         }
-
         view.cadastrar.setOnClickListener {
             telaCadastro()
         }
     }
 
+    private fun telaMovieSearch() {
+        startActivity(Intent(this, MovieSearch::class.java))
+    }
     private fun telaCadastro() {
-        val intent = Intent(this, FormCadastro::class.java)
-        startActivity(intent)
-    }
-
-    //private fun testeUsuarios() {
-    //    usuarioOpenHelper.GetAll()
-    //}
-
-    private fun inserirUsuarioExemplo() {
-        val usuario = User("Exemplo", "exemplo@example.com", "senha123")
-
-        // Insira o usuário no banco de dados usando a função insertUser da classe UsuarioOpenHelper
-        db.insertUser(usuario)
-    }
-    private fun verificarCredenciais(email: String, password: String): Boolean {
-        // Consulta o banco de dados para verificar se o usuário com o email e senha fornecidos existe
-        return db.verificarUsuario(email, password)
+        startActivity(Intent(this, FormCadastro::class.java))
     }
 }

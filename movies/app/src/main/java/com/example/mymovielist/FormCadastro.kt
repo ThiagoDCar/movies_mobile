@@ -2,6 +2,9 @@ package com.example.mymovielist
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,9 +38,19 @@ class FormCadastro : AppCompatActivity() {
 
             val user = User(nome,email,senha)
 
-            db.insertUser(user)
-            finish()
-            Toast.makeText(this, "Cadrasto realizado com sucesso!", Toast.LENGTH_SHORT).show()
+            if(user.name != "" && user.email != "" && user.password != ""){
+                view.spinner.visibility = View.VISIBLE
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    view.spinner.visibility = View.INVISIBLE
+                }, 2000)
+                db.insertUser(user)
+                finish()
+                Toast.makeText(this, "Cadrasto realizado com sucesso!", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(this, "Preencha todos os campos porfavor!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         view.voltaLogin.setOnClickListener{

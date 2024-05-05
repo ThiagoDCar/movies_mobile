@@ -37,9 +37,12 @@
         <View
             android:id="@+id/ContainerComponents"
             style="@style/ContainerComponents"
-            app:layout_constraintStart_toStartOf="parent"
+
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subTitle" />
 
         <EditText
             android:id="@+id/email"
@@ -89,8 +92,10 @@
             app:layout_constraintTop_toBottomOf="@+id/senha"/>
 
         <TextView
+            android:id="@+id/subTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="40dp"
             android:text="@string/Ola"
             android:textColor="@color/opacity_text"

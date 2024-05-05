@@ -7,19 +7,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.mymovielist.databinding.ActivityFormLoginBinding
 import com.example.mymovielist.databinding.ActivityMovieSearchBinding
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 class MovieSearch : AppCompatActivity() {
 
-    private lateinit var view: ActivityFormLoginBinding
+    private lateinit var view: ActivityMovieSearchBinding
     private lateinit var db: UsuarioOpenHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        view = ActivityFormLoginBinding.inflate(layoutInflater)
+        view = ActivityMovieSearchBinding.inflate(layoutInflater)
         setContentView(view.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -31,11 +32,22 @@ class MovieSearch : AppCompatActivity() {
         db = UsuarioOpenHelper(this)
 
         view.button.setOnClickListener {
-            val pesquisa = view.pesquisar.text.toString()
+            //val pesquisa = view.pesquisar.text.toString()
+            //val API_KEY = "b2ca12b72a2d39fd17fa0c3fcfc37ae7"
 
-            val a = "https://api.themoviedb.org/3/search/movie?query=" + pesquisa + "&api_key=b2ca12b72a2d39fd17fa0c3fcfc37ae7"
+            //val a = "https://api.themoviedb.org/3/search/movie?query=$pesquisa&api_key=$API_KEY"
 
-            Toast.makeText(this, a, Toast.LENGTH_SHORT).show()
+            val client = OkHttpClient()
+
+            val request = Request.Builder()
+                .url("https://api.themoviedb.org/3/authentication")
+                .get()
+                .addHeader("Authorization", "b2ca12b72a2d39fd17fa0c3fcfc37ae7")
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            Toast.makeText(this, "Feito!!", Toast.LENGTH_SHORT).show()
         }
     }
 }

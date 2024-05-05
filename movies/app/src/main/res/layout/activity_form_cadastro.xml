@@ -47,7 +47,7 @@
             style="@style/Edit_Text"
             android:hint="@string/nome"
             android:maxLength="25"
-            android:drawableEnd="@drawable/icon_name_mudar"
+            android:drawableEnd="@drawable/icon_name"
             android:inputType="text"
             app:layout_constraintStart_toStartOf="@id/ContainerComponents"
             app:layout_constraintEnd_toEndOf="@id/ContainerComponents"
