@@ -47,6 +47,7 @@ class FormCadastro : AppCompatActivity() {
                 db.insertUser(user)
                 finish()
                 Toast.makeText(this, "Cadrasto realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                println(user)
             }
             else{
                 Toast.makeText(this, "Preencha todos os campos porfavor!", Toast.LENGTH_SHORT).show()

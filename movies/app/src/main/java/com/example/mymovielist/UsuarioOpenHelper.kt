@@ -5,12 +5,13 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import okhttp3.internal.userAgent
 
 class UsuarioOpenHelper(context: Context) : SQLiteOpenHelper(context, NOME_BANCO_DE_DADOS, null, VERSAO_BANCO_DE_DADOS) {
 
     companion object {
         private const val NOME_BANCO_DE_DADOS = "usuario.db"
-        private const val VERSAO_BANCO_DE_DADOS = 1
+        private const val VERSAO_BANCO_DE_DADOS = 2
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -23,10 +24,26 @@ class UsuarioOpenHelper(context: Context) : SQLiteOpenHelper(context, NOME_BANCO
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        val dropTableQuery = "DROP TABLE IF EXISTS user"
-        db.execSQL(dropTableQuery)
-        onCreate(db)
+        // Seu código de migração do banco de dados aqui
+        if (newVersion > oldVersion) {
+            // Crie uma nova tabela temporária sem a coluna "age"
+            db.execSQL("CREATE TABLE user_temp (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "name TEXT NOT NULL, " +
+                    "email TEXT NOT NULL UNIQUE, " +
+                    "password TEXT NOT NULL)")
+
+            // Copie os dados da tabela antiga para a nova tabela
+            db.execSQL("INSERT INTO user_temp (name, email, password) SELECT name, email, password FROM user")
+
+            // Exclua a tabela antiga
+            db.execSQL("DROP TABLE user")
+
+            // Renomeie a nova tabela para o nome original
+            db.execSQL("ALTER TABLE user_temp RENAME TO user")
+        }
     }
+
 
     fun insertUser(user: User){
         val db = writableDatabase
