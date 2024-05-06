@@ -1,6 +1,7 @@
 package com.example.mymovielist
 
 import android.app.appsearch.SearchResult
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -89,7 +90,7 @@ class MovieSearch : AppCompatActivity() {
     }
 
     private fun voltaMenu() {
-        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", userId.toString() })
+        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", userId.toString()) })
     }
 
     private suspend fun buscarFilme(pesquisa: String): Filme? {

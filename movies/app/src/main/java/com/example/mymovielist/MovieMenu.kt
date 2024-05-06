@@ -47,7 +47,7 @@ class MovieMenu : AppCompatActivity() {
     }
 
     private fun telaMovieSearch() {
-        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", userId.toString() })
+        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", userId.toString()) })
     }
 
     private fun telaListaFilmes() {

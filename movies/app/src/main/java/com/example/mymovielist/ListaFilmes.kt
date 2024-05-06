@@ -42,6 +42,6 @@ class ListaFilmes : AppCompatActivity() {
     }
 
     private fun voltaMenu() {
-        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", userId.toString() })
+        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", userId.toString()) })
     }
 }
