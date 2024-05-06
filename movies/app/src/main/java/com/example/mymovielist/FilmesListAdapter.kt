@@ -4,15 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
 class FilmesListAdapter(private var filmes: List<Filme>, context: Context) :
     RecyclerView.Adapter<FilmesListAdapter.FilmesListHolder>() {
 
+    private lateinit var db: ListMovieOpenHelper
+
     class FilmesListHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        val idButton: Button = itemView.findViewById(R.id.button)
         val titleTextView: TextView = itemView.findViewById(R.id.title)
         val imagePathImageView: ImageView = itemView.findViewById(R.id.imageView)
         val overViewTextView: TextView = itemView.findViewById(R.id.overview)
@@ -36,6 +41,10 @@ class FilmesListAdapter(private var filmes: List<Filme>, context: Context) :
 
         val pathImage = "https://image.tmdb.org/t/p/w500${filme.backdrop_path}"
         Picasso.get().load(pathImage).into(holder.imagePathImageView)
+
+        //holder.idButton.setOnClickListener{
+        //    db.deleteMovieById(filme.id.toInt())
+        //}
     }
 
     fun refreshData(newFilmes: List<Filme>){

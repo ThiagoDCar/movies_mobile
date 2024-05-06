@@ -35,7 +35,6 @@ class ListaFilmes : AppCompatActivity() {
             // Recupera o ID do Intent
             userId = intent.getIntExtra("userId", -1)
         }
-        Toast.makeText(this, userId.toString(), Toast.LENGTH_SHORT).show()
 
         db = ListMovieOpenHelper(this)
         FilmesListAdapter = FilmesListAdapter(db.getAllMoviesById(userId.toString()), this)

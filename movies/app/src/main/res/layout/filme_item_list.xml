@@ -53,4 +53,17 @@
         android:textColor="@color/white"
         android:textSize="25sp" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        style="@style/Button"
+        android:visibility="invisible"
+        android:layout_marginTop="500dp"
+        android:text="Deletar" />
+
+    <View
+        android:id="@+id/barra_senha"
+        style="@style/Barra"
+        android:layout_width="match_parent"
+        android:layout_marginTop="550dp"/>
+
 </androidx.cardview.widget.CardView>

@@ -33,13 +33,10 @@ class MovieMenu : AppCompatActivity() {
             // Recupera o ID do Intent
             userId = intent.getIntExtra("userId", -1)
         }
-        Toast.makeText(this, userId.toString(), Toast.LENGTH_SHORT).show()
 
         view.userId.text = userId.toString()
 
         Id = view.userId.text.toString()
-
-        Toast.makeText(this, Id.toString() + "aaa", Toast.LENGTH_SHORT).show()
 
         view.Pesq.setOnClickListener{
             telaMovieSearch()
@@ -56,12 +53,10 @@ class MovieMenu : AppCompatActivity() {
 
     private fun telaMovieSearch() {
         startActivity(Intent(this, MovieSearch::class.java).apply { putExtra("userId", Id) })
-        Toast.makeText(this, Id, Toast.LENGTH_SHORT).show()
     }
 
     private fun telaListaFilmes() {
         startActivity(Intent(this, ListaFilmes::class.java).apply { putExtra("userId", Id) })
-        Toast.makeText(this, Id, Toast.LENGTH_SHORT).show()
     }
 
     private fun Sair() {

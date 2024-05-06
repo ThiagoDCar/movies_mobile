@@ -28,6 +28,7 @@
             android:id="@+id/filmes"
             android:layout_width="395dp"
             android:layout_height="616dp"
+            android:background="@android:color/transparent"
             android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

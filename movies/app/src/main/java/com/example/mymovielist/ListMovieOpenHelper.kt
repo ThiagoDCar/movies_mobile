@@ -94,4 +94,9 @@ class ListMovieOpenHelper(context: Context) : SQLiteOpenHelper(context, ListMovi
 
         return movies
     }
+
+    fun deleteMovieById(movieId: Int): Int {
+        val db = this.writableDatabase
+        return db.delete("UserMovieList", "Id = ?", arrayOf(movieId.toString()))
+    }
 }

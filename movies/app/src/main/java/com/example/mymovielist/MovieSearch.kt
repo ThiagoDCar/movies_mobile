@@ -40,7 +40,6 @@ class MovieSearch : AppCompatActivity() {
             // Recupera o ID do Intent
             userId = intent.getIntExtra("userId", -1)
         }
-        Toast.makeText(this, userId.toString(), Toast.LENGTH_SHORT).show()
 
         view.button.setOnClickListener {
             val pesquisa = view.pesquisar.text.toString()

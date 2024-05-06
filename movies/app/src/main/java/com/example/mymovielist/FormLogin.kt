@@ -57,7 +57,6 @@ class FormLogin : AppCompatActivity() {
 
     private fun telaMovieMenu() {
         startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", db.getUserIdByName(view.email.text.toString())) })
-        Toast.makeText(this, db.getUserIdByName(view.email.text.toString()).toString(), Toast.LENGTH_SHORT).show()
     }
     private fun telaCadastro() {
         startActivity(Intent(this, FormCadastro::class.java))
