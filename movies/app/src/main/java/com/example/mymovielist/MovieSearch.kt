@@ -40,6 +40,7 @@ class MovieSearch : AppCompatActivity() {
             // Recupera o ID do Intent
             userId = intent.getIntExtra("userId", -1)
         }
+        Toast.makeText(this, userId.toString(), Toast.LENGTH_SHORT).show()
 
         view.button.setOnClickListener {
             val pesquisa = view.pesquisar.text.toString()
@@ -79,9 +80,11 @@ class MovieSearch : AppCompatActivity() {
         view.addList.setOnClickListener{
             if(filme != null){
                 db.insertMovie(userId.toString(), filme)
-                Toast.makeText(this, "Filme adicionado à lista!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Filme adicionado à lista!" + userId.toString(), Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(this, "Erro, tente novamente mais tarde!", Toast.LENGTH_SHORT).show()
+            else{
+                Toast.makeText(this, "Erro, tente novamente mais tarde!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         view.logo.setOnClickListener{

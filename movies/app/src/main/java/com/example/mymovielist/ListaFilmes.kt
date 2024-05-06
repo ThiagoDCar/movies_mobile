@@ -3,17 +3,19 @@ package com.example.mymovielist
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.mymovielist.databinding.ActivityFormLoginBinding
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymovielist.databinding.ActivityListaFilmesBinding
 
 class ListaFilmes : AppCompatActivity() {
 
     private lateinit var view: ActivityListaFilmesBinding
-    private lateinit var db: UsuarioOpenHelper
+    private lateinit var db: ListMovieOpenHelper
+    private lateinit var FilmesListAdapter: FilmesListAdapter
     private var userId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,12 +35,21 @@ class ListaFilmes : AppCompatActivity() {
             // Recupera o ID do Intent
             userId = intent.getIntExtra("userId", -1)
         }
+        Toast.makeText(this, userId.toString(), Toast.LENGTH_SHORT).show()
 
-        db = UsuarioOpenHelper(this)
+        db = ListMovieOpenHelper(this)
+        FilmesListAdapter = FilmesListAdapter(db.getAllMoviesById(userId.toString()), this)
+
+        view.filmes.layoutManager = LinearLayoutManager(this)
+        view.filmes.adapter = FilmesListAdapter
 
         view.logo.setOnClickListener{
             voltaMenu()
         }
+    }
+
+    override fun onResume(){
+        super.onResume()
     }
 
     private fun voltaMenu() {
