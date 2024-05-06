@@ -41,17 +41,17 @@ class MovieMenu : AppCompatActivity() {
             telaListaFilmes()
         }
 
-        view.Pesq.setOnClickListener{
+        view.sair.setOnClickListener{
             Sair()
         }
     }
 
     private fun telaMovieSearch() {
-        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", userId.toString()) })
+        startActivity(Intent(this, MovieSearch::class.java).apply { putExtra("userId", userId.toString()) })
     }
 
     private fun telaListaFilmes() {
-        //startActivity(Intent(this, ListaFilmes::class.java).apply { putExtra("userId", userId.toString() })
+        startActivity(Intent(this, ListaFilmes::class.java).apply { putExtra("userId", userId.toString()) })
     }
 
     private fun Sair() {

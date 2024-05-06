@@ -108,7 +108,7 @@ class MovieSearch : AppCompatActivity() {
                 val resultado = response.body()
                 resultado?.let {
                     if (it.results.isNotEmpty()) {
-                        return@withContext it.results[1]
+                        return@withContext it.results[0]
                     }
                 }
             }
