@@ -2,7 +2,9 @@ package com.example.mymovielist
 
 data class Filme(
     val title:String,
-    val backdrop_path: String?, // Caminho da imagem do pôster
+    val backdrop_path: String?,
     val overview: String?,
-    val nota: String?
+    val vote_average: String?,
+    val release_date: String?,
+    val id: String
 )

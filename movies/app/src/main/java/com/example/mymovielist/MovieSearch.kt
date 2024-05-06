@@ -24,12 +24,21 @@ import retrofit2.Response
 class MovieSearch : AppCompatActivity() {
 
     private lateinit var view: ActivityMovieSearchBinding
-    private val apiKey = "b2ca12b72a2d39fd17fa0c3fcfc37ae7" // Substitua por sua chave API
+    private lateinit var db: ListMovieOpenHelper
+    private val apiKey = "b2ca12b72a2d39fd17fa0c3fcfc37ae7"
+    private lateinit var filme: Filme
+    private var userId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMovieSearchBinding.inflate(layoutInflater)
         setContentView(view.root)
+        db = ListMovieOpenHelper(this)
+
+        if (intent.hasExtra("userId")) {
+            // Recupera o ID do Intent
+            userId = intent.getIntExtra("userId", -1)
+        }
 
         view.button.setOnClickListener {
             val pesquisa = view.pesquisar.text.toString()
@@ -39,7 +48,10 @@ class MovieSearch : AppCompatActivity() {
                 // Inicia a corrotina para buscar o filme
                 lifecycleScope.launch {
                     try {
-                        val filme = buscarFilme(pesquisa)
+                        val filmin = buscarFilme(pesquisa)
+                        if(filmin != null){
+                            filme = filmin
+                        }
                         if (filme != null) {
                             // Exibe os detalhes do filme na tela
                             view.response.text = "Nome do Filme: ${filme.title}\n\nSinopse: ${filme.overview}"
@@ -62,6 +74,22 @@ class MovieSearch : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, insira um termo de pesquisa.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        view.addList.setOnClickListener{
+            if(filme != null){
+                db.insertMovie(userId.toString(), filme)
+                Toast.makeText(this, "Filme adicionado à lista!", Toast.LENGTH_SHORT).show()
+            }
+            Toast.makeText(this, "Erro, tente novamente mais tarde!", Toast.LENGTH_SHORT).show()
+        }
+
+        view.logo.setOnClickListener{
+            voltaMenu()
+        }
+    }
+
+    private fun voltaMenu() {
+        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", userId.toString() })
     }
 
     private suspend fun buscarFilme(pesquisa: String): Filme? {

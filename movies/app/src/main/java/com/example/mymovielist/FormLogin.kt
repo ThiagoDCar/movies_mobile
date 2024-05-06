@@ -18,6 +18,7 @@ class FormLogin : AppCompatActivity() {
 
     private lateinit var view: ActivityFormLoginBinding
     private lateinit var db: UsuarioOpenHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -43,7 +44,7 @@ class FormLogin : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed({
                     view.spinner.visibility = View.INVISIBLE
                 }, 2000)
-                telaMovieSearch()
+                telaMovieMenu()
                 Toast.makeText(this, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Credenciais inválidas!", Toast.LENGTH_SHORT).show()
@@ -54,8 +55,8 @@ class FormLogin : AppCompatActivity() {
         }
     }
 
-    private fun telaMovieSearch() {
-        startActivity(Intent(this, MovieSearch::class.java))
+    private fun telaMovieMenu() {
+        startActivity(Intent(this, MovieMenu::class.java).apply { putExtra("userId", db.getUserIdByName(view.email.text.toString())) })
     }
     private fun telaCadastro() {
         startActivity(Intent(this, FormCadastro::class.java))

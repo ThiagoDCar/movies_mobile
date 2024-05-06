@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Mymovielist"
         tools:targetApi="31">
         <activity
+            android:name=".ListaFilmes"
+            android:exported="false" />
+        <activity
+            android:name=".MovieMenu"
+            android:exported="false" />
+        <activity
             android:name=".MovieSearch"
             android:exported="false" />
         <activity

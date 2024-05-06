@@ -56,6 +56,31 @@ class UsuarioOpenHelper(context: Context) : SQLiteOpenHelper(context, NOME_BANCO
             db.close()
     }
 
+    fun getUserIdByName(email: String): Int? {
+        val db = writableDatabase
+        val projection = arrayOf("id")
+        val selection = "email = ?"
+        val selectionArgs = arrayOf(email)
+
+        val cursor = db.query(
+            "user",
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+
+        var userId: Int? = null
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+        }
+        cursor.close()
+
+        return userId
+    }
+
     fun verificarUsuario(email: String, password: String): Boolean {
         val db = readableDatabase
         val colunas = arrayOf("id")
